@@ -1,0 +1,8 @@
+<%= link_to 'Back', user_payments_path( @user ) %>
+<%= link_to 'Edit payment', edit_user_payment_path(@user, @payment) %>
+<%= link_to 'Delete payment', user_payment_path(@user, @payment), :method => :delete %>
+<p>----------------------</p>
+
+<%= @payment.date %>
+<%= @payment.item %>
+<%= @payment.cost %>
