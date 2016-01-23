@@ -21,9 +21,10 @@ class PaymentsController < ApplicationController
 	end
 
 	#show single payment
-	def show
-		@payment = @user.payments.find( params[:id] )
-	end
+	#NO NEED!!
+	# def show
+	# 	@payment = @user.payments.find( params[:id] )
+	# end
 
 	#edit/delete payment
 	def edit

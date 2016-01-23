@@ -1,13 +1,14 @@
-<h1>All Payments</h1>
-<%= link_to 'Back', user_path( @user ) %>
+<div class="col-lg-2">
 
-<table class = "table">
+<h1>所有支出</h1>
+
+<table class = "table table-hover">
 	<thread>
 		<tr>
 		<th>Date</th>
 		<th>Item</th>
 		<th>Cost</th>
-		<th colspan="3"></th>
+		<th colspan="5"></th>
 		</tr>
 	</thread>
 		
@@ -15,9 +16,14 @@
 		<% @payments.each do |pay| %>
 		<tr>
 			<td><%= pay.date %></td>
-			<td><%= link_to pay.item, user_payment_path(@user, pay)%></td>
+			<td><%= pay.item %></td>
 			<td><%= pay.cost %></td>
+			<td><%= link_to '編輯', edit_user_payment_path(@user, pay) %></td>
+			<td><%= link_to '刪除', user_payment_path(@user, pay), :method => :delete %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
+
+<%= link_to 'Back', user_path( @user ) %>
+</div>

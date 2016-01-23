@@ -21,7 +21,10 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* TO DO LIST:
+  - redirect_to after edit profile
+  - <%= link_to "Back", :back %> how to find ":back"?
+  - Where are the CSS and js files??
 
 
 Please feel free to use a different markup language if you do not plan to run
