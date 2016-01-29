@@ -1,29 +1,12 @@
-== README
+== README ==
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Needs to be fixed:
 
-Things you may want to cover:
+Error msg:
+PaymentsControllerTest#test_update_current_payment:
+ActionView::MissingTemplate: Missing template payments/update, application/update with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/lucent1090/projects/cash_book/app/views"
+  * "/home/lucent1090/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/devise-3.5.3/app/views"
 
-* Ruby version
+    test/controllers/payments_controller_test.rb:17:in `block in <class:PaymentsControllerTest>'
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* TO DO LIST:
-  - <%= link_to "Back", :back %> how to find ":back"?
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
