@@ -8,9 +8,9 @@
 	  	<ul><label>姓名 :</label><%= @user.name %></ul>
 	  	<ul><label>Email :</label><%= @user.email %></ul>
 	  	<ul>
+	  	<%= link_to '新增支出', new_payment_path( @user ) %>
+	    <%= link_to '修改支出', payments_path( @user ) %>
 	    <%= link_to '修改個人資料', edit_user_registration_path( @user ) %>
-	    <%= link_to '修改支出', user_payments_path( @user ) %>
-	    <%= link_to '新增支出', new_user_payment_path( @user ) %>
 		</ul>
 	  </div>
 	</div>

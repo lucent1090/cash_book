@@ -18,12 +18,13 @@
 			<td><%= pay.date %></td>
 			<td><%= pay.item %></td>
 			<td><%= pay.cost %></td>
-			<td><%= link_to '編輯', edit_user_payment_path(@user, pay) %></td>
-			<td><%= link_to '刪除', user_payment_path(@user, pay), :method => :delete %></td>
+			<td><%= link_to '編輯', edit_payment_path(pay) %></td>
+			<td><%= link_to '刪除', payment_path(pay), :method => :delete %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 
-<%= link_to 'Back', user_path( @user ) %>
+<%= paginate @payments, theme: 'twitter-bootstrap-3'  %>
+
 </div>

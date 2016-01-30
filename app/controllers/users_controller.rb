@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	#show personal profile
 	def show
-		@payments = @user.payments.where("DATE(date) = ?", Date.today)
+		@payments = @user.payments.where("DATE(date) = ?", Date.today).order("date desc")
 		@today_sum = @user.payments.where("DATE(date) = ?", Date.today).sum :cost
 		@yesterday_sum = @user.payments.where("DATE(date) = ?", Date.yesterday).sum :cost
 	end
