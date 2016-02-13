@@ -1,0 +1,115 @@
+//----------- const ------------
+const REEL = 3;
+const GRID = 1;
+const GRID_WIDTH = 60; // 60x60
+const SYMBAL = 2;      // 60x5=300
+const STEP = 60;
+//----------- const ------------
+
+//----------- global variable ------------
+var convas, ctx;
+var img = new Image();
+var clip_y = [0, 0, 0];
+var reel_going = [false, false, false];
+var animate_id = 0;
+//----------- global variable ------------
+
+//----------- render animation ------------
+function render( index ){
+	var threshold = GRID_WIDTH*(SYMBAL-GRID);
+	var img_y = SYMBAL*GRID_WIDTH;
+	var reel_x = index*GRID_WIDTH;
+
+	// clear the previous frame
+	ctx.clearRect(reel_x, 0, GRID_WIDTH, GRID_WIDTH*GRID);
+	// draw the current frame
+	clip_y[index] += STEP;
+	if( clip_y[index] >= img_y ){
+		clip_y[index] = 0;
+	}else if( clip_y[index] >= threshold ){
+		var compensation = clip_y[index] - threshold;
+		var compensation_y = img_y - clip_y[index];
+		ctx.drawImage(img, 0, 0, GRID_WIDTH, compensation, reel_x, compensation_y, GRID_WIDTH, compensation);
+	}
+	ctx.drawImage(img, 0, clip_y[index], GRID_WIDTH, GRID_WIDTH*GRID, reel_x, 0, GRID_WIDTH, GRID_WIDTH*GRID);	
+}	
+
+function animate(){
+	animate_id = requestAnimationFrame(animate);
+
+	for(var i=0; i<REEL; i++){
+		if( reel_going[i] ){ render( i ); }
+	}
+}
+//----------- render animation ------------
+
+//----------- reset slot ------------
+function reset_slot(){
+	clip_y.fill( 0 );
+	reel_going.fill( false );
+}
+//----------- reset slot ------------
+
+//----------- get result ------------
+function get_result(){
+	var dis = [Math.abs( clip_y[0] - clip_y[1] ), Math.abs( clip_y[1] - clip_y[2] ), Math.abs( clip_y[2] - clip_y[0] )];
+	if( dis.every(e => e<20) ){
+		// Congrats!!!
+		ctx.strokeStyle = "red";
+		ctx.lineWidth = 5;
+		ctx.strokeRect(5, 3, GRID_WIDTH*REEL-15, GRID_WIDTH-10);
+		// get prize
+	}
+}
+//----------- get result ------------
+
+//----------- stop animation ------------
+function stop_reel(  ){
+	for(var i=0; i<REEL; i++){
+		if( reel_going[i] ){
+			reel_going[i] = false;
+			break;
+		}
+	}
+
+	if( reel_going.every(e => e==false) ){
+		cancelAnimationFrame(animate_id);
+		animate_id = 0;
+
+		get_result();
+		reset_slot();
+	}
+}
+//----------- stop animation ------------
+
+//----------- main ------------
+$(document).ready(function(){
+	// init
+	canvas = document.getElementById('SlotCanvas');
+  ctx = canvas.getContext('2d');
+  img.src = "<%= asset_path('slot.png') %>";
+
+  // draw init reels
+  img.onload = function(){
+  	for(var i=0; i<REEL; i++){
+  		ctx.drawImage(img, 0, 0, GRID_WIDTH, GRID_WIDTH*GRID, i*GRID_WIDTH, 0, GRID_WIDTH, GRID_WIDTH*GRID);
+  	}
+  }
+
+	// listen to button click
+	$("#slot-machine").on('click', 'button', function(){
+
+		reel_going.fill( true );
+		animate();
+
+		setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+		setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+		setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+
+	});
+});
+//----------- main ------------
+
+//----------- flow chart -----------
+// init reels -> listen button click -> rolling the reels -> draw animation
+// -> stop all reels -> get result -> get prize -> reset all variable

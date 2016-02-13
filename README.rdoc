@@ -1,12 +1,6 @@
 == README ==
 
-* Needs to be fixed:
-
-Error msg:
-PaymentsControllerTest#test_update_current_payment:
-ActionView::MissingTemplate: Missing template payments/update, application/update with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
-  * "/home/lucent1090/projects/cash_book/app/views"
-  * "/home/lucent1090/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/devise-3.5.3/app/views"
-
-    test/controllers/payments_controller_test.rb:17:in `block in <class:PaymentsControllerTest>'
-
+ - 拉霸機?
+ - 每月總預算
+ - 修改CSS+Javascript
+ - payment新增分類（拖拉?）
