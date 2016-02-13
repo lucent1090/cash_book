@@ -1,6 +1,6 @@
-== README ==
+README
 
  - 拉霸機?
- - 每月總預算
+ - 每日預算
  - 修改CSS+Javascript
  - payment新增分類（拖拉?）
