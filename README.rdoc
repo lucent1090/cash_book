@@ -1,6 +1,13 @@
 README
 
- - 拉霸機?
+ - facebook sign in
+ - friendly id
  - 每日預算
  - 修改CSS+Javascript
  - payment新增分類（拖拉?）
+
+還可修改
+ - 拉霸機
+
+Config
+ - disable turbolinks

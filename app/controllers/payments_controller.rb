@@ -35,7 +35,9 @@ class PaymentsController < ApplicationController
 	def destroy
 		@payment = Payment.find( params[:id] )
 		@payment.destroy
+		
 		redirect_to user_path( @user )
+		# redirect_to payments_path( @user )
 	end
 
 private

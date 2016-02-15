@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :payments, except: [:show]
 
   root 'users#index'
+  post 'users/update_coin', :to => 'users#update_coin'
 
 end

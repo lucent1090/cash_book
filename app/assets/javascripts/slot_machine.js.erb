@@ -12,6 +12,7 @@ var img = new Image();
 var clip_y = [0, 0, 0];
 var reel_going = [false, false, false];
 var animate_id = 0;
+var coin = 0;
 //----------- global variable ------------
 
 //----------- render animation ------------
@@ -59,6 +60,7 @@ function get_result(){
 		ctx.lineWidth = 5;
 		ctx.strokeRect(5, 3, GRID_WIDTH*REEL-15, GRID_WIDTH-10);
 		// get prize
+		coin += 4;
 	}
 }
 //----------- get result ------------
@@ -78,6 +80,16 @@ function stop_reel(  ){
 
 		get_result();
 		reset_slot();
+
+		// set coin to database
+		$.ajax({
+			url: "/users/update_coin",
+			type: "post",
+			data: { id: $("#slot-machine").data("userid"), thecoin: coin },
+			success: function(){
+				return false;
+			}
+		});
 	}
 }
 //----------- stop animation ------------
@@ -99,12 +111,18 @@ $(document).ready(function(){
 	// listen to button click
 	$("#slot-machine").on('click', 'button', function(){
 
-		reel_going.fill( true );
-		animate();
+		coin = $("#slot-machine").data("coin");
+		if( coin > 0 ){
+			
+			coin -= 1;
 
-		setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
-		setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
-		setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+			reel_going.fill( true );
+			animate();
+
+			setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+			setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+			setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+		}
 
 	});
 });

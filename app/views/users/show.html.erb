@@ -12,6 +12,7 @@
 			<div class="panel panel-default panel-body">
 			  <ul><label>姓名 :</label><%= @user.name %></ul>
 			  <ul><label>Email :</label><%= @user.email %></ul>
+			  <ul><label>每日預算 :</label><%= @user.budget_per_day %></ul>
 			  <ul>
 			  <%= link_to '新增支出', new_payment_path( @user ) %>
 			  <%= link_to '修改支出', payments_path( @user ) %>
@@ -21,8 +22,9 @@
 		</div>
 
 		<div class="col-md-5">
-			<div class="panel panel-default panel-body">
-				<div id="slot-machine">
+			<div class="panel panel-default panel-body" data-remote:'true'>
+				<div id="slot-machine" data-coin="<%= @user.coin %>" data-userid="<%= @user.id %>">
+					<label>剩餘硬幣 :</label><%= @user.coin %>
 					<canvas id="SlotCanvas" width="200" height="100"></canvas>
 		  		<button type="button">Spin</button> 
 				</div>
