@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :update_coin]
 
 	#root page
-	def index
-	end
+	# def index
+	# end
 
 	#show personal profile
 	def show
@@ -27,6 +27,6 @@ class UsersController < ApplicationController
 
   private
   	def set_user
-  		@user = User.find( params[:id] )
+  		@user = User.find( current_user.id )
   	end
 end

@@ -9,14 +9,14 @@ RSpec.feature "Payments", type: :feature do
 
 		p_count = u.payments.count
 
-		visit user_path( u )
+		visit users_path
 		click_link "新增支出"
 		
 		fill_in "Item", with: "Dinner"
 		fill_in "Cost", with: "100"
 		click_button "Create Payment"
 
-		expect(current_path).to eq user_path(u)
+		expect(current_path).to eq users_path
 		expect(u.payments.count).to be (p_count+1)
 	end
 	

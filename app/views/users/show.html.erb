@@ -14,9 +14,9 @@
 			  <ul><label>Email :</label><%= @user.email %></ul>
 			  <ul><label>每日預算 :</label><%= @user.budget_per_day %></ul>
 			  <ul>
-			  <%= link_to '新增支出', new_payment_path( @user ) %>
-			  <%= link_to '修改支出', payments_path( @user ) %>
-			  <%= link_to '修改個人資料', edit_user_registration_path( @user ) %>
+			  <%= link_to '新增支出', new_payment_path %>
+			  <%= link_to '修改支出', payments_path %>
+			  <%= link_to '修改個人資料', edit_user_registration_path %>
 				</ul>
 			</div>
 		</div>

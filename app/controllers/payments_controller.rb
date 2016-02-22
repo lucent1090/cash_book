@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
 	def create
 		@payment = @user.payments.build( payment_params )
 		if @payment.save
-			redirect_to user_path( @user )
+			redirect_to users_path
 		else
 			render :action => :new
 		end
@@ -27,7 +27,7 @@ class PaymentsController < ApplicationController
 	def update
 		@payment = Payment.find( params[:id] )
 		if @payment.update( payment_params )
-			redirect_to user_path( @user )
+			redirect_to users_path
 		else
 			render :action => :edit
 		end
@@ -36,8 +36,7 @@ class PaymentsController < ApplicationController
 		@payment = Payment.find( params[:id] )
 		@payment.destroy
 		
-		redirect_to user_path( @user )
-		# redirect_to payments_path( @user )
+		redirect_to users_path
 	end
 
 private
