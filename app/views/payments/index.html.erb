@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+
+	<h1>所有支出</h1>
+
+	<table class = "table table-hover">
+		<thread>
+			<tr>
+			<th>Date</th>
+			<th>Item</th>
+			<th>Cost</th>
+			<th colspan="5"></th>
+			</tr>
+		</thread>
+
+		<tbody>
+			<% @payments.each do |pay| %>
+			<tr>
+				<td><%= pay.date %></td>
+				<td><%= pay.item %></td>
+				<td><%= pay.cost %></td>
+				<td><%= link_to '編輯', edit_payment_path(pay) %></td>
+				<td><%= link_to '刪除', payment_path(pay), :method => :delete %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<%= paginate @payments, theme: 'twitter-bootstrap-3'  %>
+
+	</div>
+</div>
