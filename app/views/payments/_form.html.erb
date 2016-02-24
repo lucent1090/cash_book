@@ -1,5 +1,6 @@
 <%= simple_form_for [@payment] do |f| %>
 <%= f.input :date, label: false %>
+<%= f.collection_radio_buttons :group, @collection_group, :first, :last %>
 <%= f.input :item, placeholder: 'Item', label: false %>
 <%= f.input :cost, placeholder: 'Cost', label: false %>
 

@@ -9,7 +9,8 @@
 			<th>Date</th>
 			<th>Item</th>
 			<th>Cost</th>
-			<th colspan="5"></th>
+			<th>Group</th>
+			<th colspan="6"></th>
 			</tr>
 		</thread>
 
@@ -19,6 +20,7 @@
 				<td><%= pay.date %></td>
 				<td><%= pay.item %></td>
 				<td><%= pay.cost %></td>
+				<td><%= pay.group %></td>
 				<td><%= link_to '編輯', edit_payment_path(pay) %></td>
 				<td><%= link_to '刪除', payment_path(pay), :method => :delete %></td>
 			</tr>

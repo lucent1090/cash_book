@@ -16,7 +16,7 @@
 			  <ul>
 			  <%= link_to '新增支出', new_payment_path %>
 			  <%= link_to '修改支出', payments_path %>
-			  <%= link_to '修改個人資料', edit_user_registration_path %>
+			  <%= link_to '資料設定', edit_user_registration_path %>
 				</ul>
 			</div>
 		</div>
@@ -48,16 +48,18 @@
 				<th>日期</th>
 				<th>項目</th>
 				<th>花費</th>
-				<th colspan="3"></th>
+				<th>分類</th>
+				<th colspan="4"></th>
 				</tr>
 			</thread>
 
 			<tbody>
 				<% @payments.each do |pay| %>
 				<tr>
-					<td><%= pay.date %></td>
+					<td><%= pay.date.strftime("%I:%M %P") %></td>
 					<td><%= pay.item %></td>
 					<td><%= pay.cost %></td>
+					<td><%= pay.group %></td>
 				</tr>
 				<% end %>
 			</tbody>

@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213095340) do
+ActiveRecord::Schema.define(version: 20160224055342) do
 
   create_table "payments", force: :cascade do |t|
     t.string   "item"
     t.string   "cost"
     t.datetime "date"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "group",      default: ""
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160213095340) do
     t.string   "name"
     t.integer  "coin",                   default: 0
     t.string   "budget_per_day",         default: "0"
+    t.text     "all_groups"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

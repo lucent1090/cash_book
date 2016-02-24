@@ -10,6 +10,7 @@ class PaymentsController < ApplicationController
 	#add new payment
 	def new
 		@payment = @user.payments.build
+		@collection_group = @user[:all_groups].map { |e| e.split.push(e) }
 	end
 	def create
 		@payment = @user.payments.build( payment_params )
@@ -23,6 +24,7 @@ class PaymentsController < ApplicationController
 	#edit/delete payment
 	def edit
 		@payment = Payment.find( params[:id] )
+		@collection_group = @user[:all_groups].map { |e| e.split.push(e) }
 	end
 	def update
 		@payment = Payment.find( params[:id] )
@@ -46,6 +48,6 @@ private
 	end
 
 	def payment_params
-		params.require(:payment).permit(:item, :cost, :date)
+		params.require(:payment).permit(:item, :cost, :date, :group)
 	end
 end
