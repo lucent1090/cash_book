@@ -15,5 +15,6 @@ protected
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) << :budget_per_day
+    devise_parameter_sanitizer.for(:account_update) << :all_groups
   end
 end

@@ -4,10 +4,12 @@ README
  - friendly id
  - 每日預算
  - 修改CSS+Javascript
- - payment新增分類（拖拉?）
+ - payment分類拖拉?
 
 還可修改
  - 拉霸機
+ - payment分類新增刪除時改變標題顏色
 
 Config
  - disable turbolinks
+ - Time zone: Taipei

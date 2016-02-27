@@ -1,6 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+  
+  before_action :find_user, only: [:edit, :update]
 
   # GET /resource/sign_up
   # def new
@@ -13,14 +15,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @collection_group = @user[:all_groups].map { |e| e.split.push(e) }
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:user][:delete_group] != ""
+      p "heyyyyyy"
+      @user[:all_groups].delete( params[:user][:delete_group] )
+    end
+    if params[:user][:add_new_group] != ""
+      @user[:all_groups] << params[:user][:add_new_group]
+    end
+    @user.save
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -57,6 +68,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+    def find_user
+      @user = User.find( current_user.id )
+    end
 
   protected
 

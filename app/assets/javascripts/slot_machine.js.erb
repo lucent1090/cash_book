@@ -98,33 +98,37 @@ function stop_reel(  ){
 $(document).ready(function(){
 	// init
 	canvas = document.getElementById('SlotCanvas');
-  ctx = canvas.getContext('2d');
-  img.src = "<%= asset_path('slot.png') %>";
+ 
+  if( canvas != null ){
+	  ctx = canvas.getContext('2d');
+	  img.src = "<%= asset_path('slot.png') %>";
 
-  // draw init reels
-  img.onload = function(){
-  	for(var i=0; i<REEL; i++){
-  		ctx.drawImage(img, 0, 0, GRID_WIDTH, GRID_WIDTH*GRID, i*GRID_WIDTH, 0, GRID_WIDTH, GRID_WIDTH*GRID);
-  	}
+	  // draw init reels
+	  img.onload = function(){
+	  	for(var i=0; i<REEL; i++){
+	  		ctx.drawImage(img, 0, 0, GRID_WIDTH, GRID_WIDTH*GRID, i*GRID_WIDTH, 0, GRID_WIDTH, GRID_WIDTH*GRID);
+	  	}
+	  }
+
+	  	// listen to button click
+		$("#slot-machine").on('click', 'button', function(){
+
+			coin = $("#slot-machine").data("coin");
+			if( coin > 0 ){
+				
+				coin -= 1;
+
+				reel_going.fill( true );
+				animate();
+
+				setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+				setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+				setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
+			}
+
+		});
   }
 
-	// listen to button click
-	$("#slot-machine").on('click', 'button', function(){
-
-		coin = $("#slot-machine").data("coin");
-		if( coin > 0 ){
-			
-			coin -= 1;
-
-			reel_going.fill( true );
-			animate();
-
-			setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
-			setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
-			setTimeout(stop_reel, Math.floor(Math.random() * 2000 + 1000));
-		}
-
-	});
 });
 //----------- main ------------
 

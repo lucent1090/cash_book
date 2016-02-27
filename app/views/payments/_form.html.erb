@@ -1,6 +1,8 @@
 <%= simple_form_for [@payment] do |f| %>
 <%= f.input :date, label: false %>
-<%= f.collection_radio_buttons :group, @collection_group, :first, :last %>
+<%= f.collection_radio_buttons( :group, @collection_group, :first, :last, item_wrapper_tag: :div, item_wrapper_class: :radio) { 
+	|b| content_tag(:label) { b.radio_button + b.label } 
+	}  %>
 <%= f.input :item, placeholder: 'Item', label: false %>
 <%= f.input :cost, placeholder: 'Cost', label: false %>
 

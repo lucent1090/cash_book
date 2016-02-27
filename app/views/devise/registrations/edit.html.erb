@@ -10,6 +10,20 @@
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :budget_per_day, label: "每日預算" %>
 
+    <%= f.label "新增分類", data: {'toggle' => "collapse", 'target' => "#collapse_section1"} %>
+    <%= f.label "刪除分類", data: {'toggle' => "collapse", 'target' => "#collapse_section2"} %>
+
+    <div id="collapse_section1" class="collapse">
+    <%= f.input :add_new_group, label: false %>
+    </div>
+    
+    <div id="collapse_section2" class="collapse">
+    <%= f.collection_radio_buttons( :delete_group, @collection_group, :first, :last,    item_wrapper_tag: :div, item_wrapper_class: :radio) { 
+            |b| content_tag(:label) { b.radio_button + b.label } 
+          }  
+    %>
+    </div>
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
