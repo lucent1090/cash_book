@@ -23,7 +23,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     if params[:user][:delete_group] != ""
-      p "heyyyyyy"
       @user[:all_groups].delete( params[:user][:delete_group] )
     end
     if params[:user][:add_new_group] != ""

@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   resource  :users, only: [:show]
   resources :payments, except: [:show]
 
-  # root 'users#index'
   root 'welcome#index'
 
   post 'users/update_coin', :to => 'users#update_coin'
-
+  get  'users/graphic_data', :defaults => { :format => 'json' }
 end
