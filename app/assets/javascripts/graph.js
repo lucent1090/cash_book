@@ -4,32 +4,26 @@ $.ajax({
   url: 'users/graphic_data',
   dataType: 'json',
   success: function (word) {
-    $(document).ready(function(){
-      $("#graph").text(JSON.stringify(word));
-    });
-
-      d3.layout.cloud().size([800, 800])
+      d3.layout.cloud().size([350, 300])
         .words(word)
         .padding(5)
         .rotate(function() { return ~~(Math.random() * 2) * 75; })
         .font("Impact")
         .fontSize(function(d) { return d.size; })
-        .on("end", end)
+        .on("end", draw)
         .start();   
-    
-    
   },
   error: function (result) {
     error();
   }
 });
 
-function end(word) { 
-  d3.select("body").append("svg")
-      .attr("width", 850)
+function draw(word) { 
+  d3.select("#word-could").append("svg")
+      .attr("width", 400)
       .attr("height", 350)
     .append("g")
-      .attr("transform", "translate(" + 850 / 2 + "," + 350 / 2 + ")")
+      .attr("transform", "translate(" + 400 / 2 + "," + 350 / 2 + ")")
     .selectAll("text")
       .data(word)
     .enter().append("text")
